@@ -23,6 +23,37 @@
     status = "disabled";
 };
 
+&led0 {
+    status = "disabled";
+};
+&led1 {
+    status = "disabled";
+};
+&led2 {
+    status = "disabled";
+};
+&button0 {
+    status = "disabled";
+};
+&button1 {
+    status = "disabled";
+};
+&button2 {
+    status = "disabled";
+};
+&button3 {
+    status = "disabled";
+};
+&pwm20 {
+    status = "disabled";
+};
+
+
+&spi00 {
+    status = "disabled";
+};
+
+
 /*&clock {
     //hfclkaudio-frequency = <12288000>;  // Exemple : 12.288 MHz → 48 kHz multiples 
     // 11289600
@@ -55,9 +86,9 @@
 &pinctrl {
     i2s0_default: i2s0_default {
         group1 {
-            psels = <NRF_PSEL(I2S_SCK_M, 2, 6)>,  // MIC_CLK (SCK - Serial Clock)
-                    <NRF_PSEL(I2S_LRCK_M, 2, 8)>, // MIC_WS
-                    <NRF_PSEL(I2S_SDIN, 2, 9)>; // MIC_DATA
+            psels = <NRF_PSEL(I2S_SCK_M, 1, 11)>,  // MIC_CLK (SCK - Serial Clock)
+                    <NRF_PSEL(I2S_LRCK_M, 1, 12)>, // MIC_WS
+                    <NRF_PSEL(I2S_SDIN, 1, 13)>; // MIC_DATA
         };
     };
 };
@@ -90,28 +121,32 @@
     status = "okay";
 };
 
+&gpio1 {
+    status = "okay";
+};
+
 / {
     mic_gpio: mic_gpio {
         compatible = "gpio-leds";
 
         mic_wake: mic_wake {
-            gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
             label = "MIC_WAKE";
         };
 
         mic_thsel: mic_thsel {
-            gpios = <&gpio2 7 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
             label = "MIC_THSEL";
         };
 
         mic_oe: mic_oe {
-            gpios = <&gpio2 10 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
             label = "MIC_OE";
         };
         
-        test_data: test_data {
+        /*test_data: test_data {
             gpios = <&gpio2 9 GPIO_ACTIVE_HIGH>; // P2.09 = MIC_DATA
             label = "TEST_DATA";
-        };
+        };*/
     };
 };
